@@ -1,17 +1,30 @@
 version: '3'
+
+volumes:
+  mysql_data:
+    driver: local 
 services:
-app1:
-build: ./app1
-ports:
-- "5001:5000"
-app2:
-build: ./app2
-ports:
-- "5002:5000"
-nginx:
-build: ./nginx
-ports:
-- "8080:80"
+  app1:
+     build: ./app1
+     ports:
+        - "5001:5000"
+  app2:
+     build: ./app2
+     ports:
+        - "5002:5000"
+  nginx:
+     build: ./nginx
+     ports:
+      - "8080:80"
+  database:
+    image: mysql:8.0
+    volumes:
+    - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: demo
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin01
 depends_on:
 - app1
 - app2
