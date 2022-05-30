@@ -15,12 +15,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the App1 Docker image
-      run: docker build . --file app1/Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build app1/ --file app1/Dockerfile --tag my-image-name:$(date +%s)
     
     - uses: actions/checkout@v3
     - name: Build the App2 Docker image
-      run: docker build . --file app2/Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build app2/ --file app2/Dockerfile --tag my-image-name:$(date +%s)
 
     - uses: actions/checkout@v3
     - name: Build the NGINX Docker image
-      run: docker build . --file nginx/Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build nginx/ --file nginx/Dockerfile --tag my-image-name:$(date +%s)
